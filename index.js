@@ -37,8 +37,8 @@ console.log(
 // - push the manager object to the employee member array
 // - push the manager id to the employee id array
 // - make call to the create team function
-const createManager = () => {
-  inquirer.prompt([
+const createManager = async () => {
+  await inquirer.prompt([
     { type: "input", message: "Enter Manager name: ", name: "manName" },
     { type: "input", message: "Enter Manager id: ", name: "id" },
     { type: "input", message: "Enter Manager email: ", name: "email" },
@@ -49,9 +49,10 @@ const createManager = () => {
     empId.push(response.id);
     console.log(empMem);
     console.log(empId);
+    createTeam();
     })    
 };
-createManager();
+
 // 8.
 // create team function
 // - prompt user with the list of choices for Engineer, Intern, or End of adding employee for the team
@@ -60,10 +61,13 @@ createManager();
 // - make call to add-intern-function if choice is intern
 // - make call to build-team function if choice is end of adding employee
 
-const createTeam = () => {
-    inquirer.prompt([
-        { type: "list", message: "Which team member would you like to add?", name: "teamMember", 
-    choices: ["Engineer", "Intern", 'Create team profile'] },
+const createTeam = async () => {
+    await inquirer.prompt([
+        { 
+        type: "list", 
+        message: "Which team member would you like to add?", 
+        name: "teamMember", 
+        choices: ["Engineer", "Intern", 'Create team profile'] },
     ])
     .then((response) => {
         let member = response.choices;
@@ -73,7 +77,7 @@ const createTeam = () => {
         if(member === "Create team profile") {renderProfile()};
     })
 };
-createTeam();
+
 // 8.
 // add engineer function
 // - prompt user with questions for engineer name, id, email, and github name
@@ -131,3 +135,17 @@ const renderProfile = () => {
 // - if not exist, create the dist subfolder
 // - make call to imported render function passing employee member array as argument and assign returned html to a variable
 // - make call to fs write file function passing the html file path, html variable
+
+
+// const teamProfileGenerator = async () => {
+//     try{
+//         await createManager();
+//         await createTeam();
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
+
+// teamProfileGenerator();
+
+createManager();
