@@ -10,8 +10,8 @@ const renderHtml = require("./src/page-template");
 // 3.
 // create variable to hold the path to dist subfolder using path lib resolve method
 // create variable to hold the path to team.html using path lib join method
-const styleSheet = path.join(__dirname, "dist");
-const team = path.join("Users", "Refsnes", "demo_path.js");
+const dist = path.join(__dirname, "dist");
+const team = path.join("/dist", "manager", "engineers", "interns");
 
 // 4.
 // create an empty employee memeber array variable to store the employee members, manager, engineers, and interns
@@ -39,7 +39,7 @@ console.log(
 // - make call to the create team function
 const createManager = () => {
   inquirer.prompt([
-    { type: "input", message: "Enter Manager name: ", name: "name" },
+    { type: "input", message: "Enter Manager name: ", name: "manName" },
     { type: "input", message: "Enter Manager id: ", name: "id" },
     { type: "input", message: "Enter Manager email: ", name: "email" },
     { type: "input", message: "Enter Manager office number: ", name: "office" },
@@ -63,9 +63,16 @@ createManager();
 const createTeam = () => {
     inquirer.prompt([
         { type: "list", message: "Which team member would you like to add?", name: "teamMember", 
-    choices: ["Engineer", "Intern", 'Finished adding employees'] },
+    choices: ["Engineer", "Intern", 'Create team profile'] },
     ])
-}
+    .then((response) => {
+        let member = response.choices;
+
+        if(member === "Engineer") {addEngineer()};
+        if(member === "Intern") {addIntern()};
+        if(member === "Create team profile") {renderProfile()};
+    })
+};
 createTeam();
 // 8.
 // add engineer function
@@ -74,6 +81,40 @@ createTeam();
 // - push engineer object to employee member array
 // - push engineer id to employee id array
 // - make call to create team function
+const addEngineer = () => {
+    inquirer.prompt([
+        { type: "input", message: "Enter Engineer name: ", name: "engName" },
+        { type: "input", message: "Enter Engineer id: ", name: "id" },
+        { type: "input", message: "Enter Engineer email: ", name: "email" },
+        { type: "input", message: "Enter Engineer github: ", name: "github" },
+    ])
+    .then((response) => {
+        empMem.push(response);
+        empId.push(response.id);
+        console.log('Engineer added to team');
+        createTeam();
+    })
+};
+
+const addIntern = () => {
+    inquirer.prompt([
+        { type: "input", message: "Enter Intern name: ", name: "intName" },
+        { type: "input", message: "Enter Intern id: ", name: "id" },
+        { type: "input", message: "Enter Intern email: ", name: "email" },
+        { type: "input", message: "Enter Intern school: ", name: "school" },
+    ])
+    .then((response) => {
+        empMem.push(response);
+        empId.push(response.id);
+        console.log('Intern added to team');
+        createTeam();
+    })
+};
+
+const renderProfile = () => {
+    if (!fs.existsSync(dist)) {fs.mkdirSync(dist)};  
+    fs.writeFile(`${dist}/manager`, team(empMem), (err) => {console.log(err)});
+};
 
 // 9.
 // add intern function
