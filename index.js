@@ -113,7 +113,8 @@ const addIntern = () => {
 
 const renderProfile = () => {
     if (!fs.existsSync(dist)) {fs.mkdirSync(dist)};  
-    fs.writeFile(`${dist}/manager`, team(empMem), (err) => {console.log(err)});
+    const profile = team(empMem);
+    fs.writeFile(`${dist}/manager`, profile, (err) => {console.log(err)});
 };
 
 // 9.
