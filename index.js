@@ -7,38 +7,19 @@ const path = require("path");
 
 const renderHtml = require("./src/page-template");
 
-// 3.
-// create variable to hold the path to dist subfolder using path lib resolve method
-// create variable to hold the path to team.html using path lib join method
 const dist = path.join(__dirname, "dist");
 const team = path.join("/dist", "manager", "engineers", "interns");
 
-// 4.
-// create an empty employee memeber array variable to store the employee members, manager, engineers, and interns
-// create an empty employee id array to store the employee ids
 const empMem = [];
-const empId = [];
+var isDone = false;
 
-// 5.
-// print user of usage
 console.log(
   `\nTeam profile generator activated.  Please follow the prompts to create your team's profile.\n
   \n Let's start with the manager:`
 );
 
-// 6.
-// make call to create manager function to start the main process
-
-
-// 7.
-// create manager function
-// - ask the questions for name, id, email, office number for manager using inquirer
-// - in the .then callback function, create manager object by instantiating Manager class instance, passing in name, id, office number as arguments to constructor
-// - push the manager object to the employee member array
-// - push the manager id to the employee id array
-// - make call to the create team function
-const createManager = async () => {
-  await inquirer.prompt([
+const createManager = () => {
+  inquirer.prompt([
     { type: "input", message: "Enter Manager name: ", name: "manName" },
     { type: "input", message: "Enter Manager id: ", name: "id" },
     { type: "input", message: "Enter Manager email: ", name: "email" },
@@ -46,23 +27,15 @@ const createManager = async () => {
   ])
   .then((response) => {
     empMem.push(response);
-    empId.push(response.id);
     console.log(empMem);
-    console.log(empId);
-    createTeam();
+    // keep asking if they want to add another member until isDone flag is changed
+    while(!isDone) {createTeam()};
     })    
 };
 
-// 8.
-// create team function
-// - prompt user with the list of choices for Engineer, Intern, or End of adding employee for the team
-// - in .then callback function check what the user choice is and make call to the corresponding functions respectively
-// - make call to add-engineer-function if the choice is engineer
-// - make call to add-intern-function if choice is intern
-// - make call to build-team function if choice is end of adding employee
 
-const createTeam = async () => {
-    await inquirer.prompt([
+const createTeam = () => {
+    inquirer.prompt([
         { 
         type: "list", 
         message: "Which team member would you like to add?", 
@@ -72,19 +45,12 @@ const createTeam = async () => {
     .then((response) => {
         let member = response.choices;
 
-        if(member === "Engineer") {addEngineer()};
-        if(member === "Intern") {addIntern()};
-        if(member === "Create team profile") {renderProfile()};
+        if(member === "Engineer") {return addEngineer()};
+        if(member === "Intern") {return addIntern()};
+        if(member === "Create team profile") {return renderProfile()};
     })
 };
 
-// 8.
-// add engineer function
-// - prompt user with questions for engineer name, id, email, and github name
-// - in .then callback create engineer object by instantiating Engineer class instance passing name, id, email, and github as arguments to class constructor
-// - push engineer object to employee member array
-// - push engineer id to employee id array
-// - make call to create team function
 const addEngineer = () => {
     inquirer.prompt([
         { type: "input", message: "Enter Engineer name: ", name: "engName" },
@@ -94,9 +60,7 @@ const addEngineer = () => {
     ])
     .then((response) => {
         empMem.push(response);
-        empId.push(response.id);
         console.log('Engineer added to team');
-        createTeam();
     })
 };
 
@@ -109,9 +73,7 @@ const addIntern = () => {
     ])
     .then((response) => {
         empMem.push(response);
-        empId.push(response.id);
         console.log('Intern added to team');
-        createTeam();
     })
 };
 
