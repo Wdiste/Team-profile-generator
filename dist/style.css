@@ -1,0 +1,9 @@
+h1 {
+    height: 10vh;
+    background-color: red;
+    text-align: center;
+    line-height: 10vh;
+    font-weight: bold;
+    font-size: 5vh;
+}
+
