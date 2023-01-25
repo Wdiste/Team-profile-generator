@@ -1,6 +1,11 @@
+const Manager = require("../lib/Manager");
+const Engineer = require("../lib/Engineer");
+const Intern = require("../lib/Intern");
+
 // create team function with team array passed in
 const createTeam = (team) => {
-
+    const teamList = team;
+    console.log('team list:', teamList)
     // create the manager html function with manager object passed in as input parameter
     // - return template literal replacing name, role, id, email, office number with getXXX methods from manager object
     const renderManager = (manager) => {
@@ -32,7 +37,7 @@ const createTeam = (team) => {
 
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">ID: ${engineer.id}</li>
-                    <li class="list-group-item">Office: ${engineer.office}</li>
+                    <li class="list-group-item">github: ${engineer.git}</li>
                     <li class="list-group-item">Email: ${engineer.email}</li>
                 </ul>
             </div>
@@ -51,50 +56,34 @@ const createTeam = (team) => {
 
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">ID: ${intern.id}</li>
-                    <li class="list-group-item">Office: ${intern.school}</li>
+                    <li class="list-group-item">School: ${intern.school}</li>
                     <li class="list-group-item">Email: ${intern.email}</li>
                 </ul>
             </div>
         `;
     };
 
-    // create an empty employee html array to store employee html for manager, engineers, interns
     const teamPage = [];
 
-    // make call to filter method on team array - for each employee in team array to check if the employee's role is "Manager" via the employee's get role method and assign the new manager array returned from filter method to a new variable
-    const managers = team.filter(member => !!member.manName)
-    // make call to map method on the new manager array to call create manager html function and assign the new manager html array returned from map method to a new variable
-    const manCard = managers.map((manager) => {renderManager(manager)})
-    // make call to join method on the new manager html array to convert it to html string and assign it to a new variable
-    manCard.join(",");
-    // push the new manager html string to the employee html array
-    // option - you can use chained array methods to avoid create new variables
-    teamPage.push(manCard);
 
-    // make call to filter method on team array - for each employee in team array to check if the employee's role is "Engineer" via the employee's get role method and assign the new engineer array returned from filter method to a new variable
-    const engineers = team.filter(member => !!member.engName)
-    // make call to map method on the new engineer array to call create engineer html function and assign the new engineer html array returned from map method to a new variable
-    const engCard = engineers.map((engineer) => {renderEngineer(engineer)})
-    // make call to join method on the new engineer html array to convert it to html string and assign it to a new variable
-    engCard.join(",");
-    // push the new engineer html string to the employee html array
-    // option - you can use chained array methods to avoid create new variables
-    teamPage.push(engCard);
+    const managers = team.map((obj) => {
+        if(obj.role === 'manager')  {
+            teamPage.push(renderManager(obj));
+            console.log('manager added: ', obj.name)};
+        if(obj.role === 'engineer') {
+            teamPage.push(renderEngineer(obj));
+            console.log('engineer added: ', obj.name)};
+        if(obj.role === 'intern')   {
+            teamPage.push(renderIntern(obj));
+            console.log('intern added: ', obj.name)}
+    });
 
-    // make call to filter method on team array - for each employee in team array to check if the employee's role is "Intern" via the employee's get role method and assign the new intern array returned from filter method to a new variable
-    const interns = team.filter(member => !!member.intName)
-    // make call to map method on the new intern array to call create intern html function and assign the new intern html array returned from map method to a new variable
-    const intCard = interns.map((intern) => {renderIntern(intern)})
-    // make call to join method on the new intern html array to convert it to html string and assign it to a new variable
-    intCard.join(',')
-    // push the new intern html string to the employee html array
-    // option - you can use chained array methods to avoid create new variables
-    teamPage.push(intCard);
+    console.log('teamcompleted', teamPage)
 
-    // call join method on employee html array to convert it to html string and return it to the caller
     return teamPage.join("");
+    
 
-}
+};
 
 // export function to generate entire page with team array passed in as input parameter from index.js
 // - return template literal for entire html replacing team member html with returned value from create-team-function via template literal varaible expression
@@ -114,6 +103,7 @@ module.exports = team => {
     <header>
         <h1>My Team</h1>
     </header>
+        
         ${teamInput}
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
