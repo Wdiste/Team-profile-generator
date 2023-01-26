@@ -1,24 +1,30 @@
-// Import Engineer class with require()
+const Engineer = require("../lib/Engineer");
 
 // Test setting github account
+// note that github account is the username to be added to preexisting 
+// url string
 test("Assigning github account to engineer", () => {
-  let github = Wdiste;
+  let newGit = Wdiste;
 
-  let employee = new Engineer("name", "id", "role", "email", github);
+  let employee = new Engineer("name", "id", "role", "email", newGit);
 
-  expect(employee.git).toEqual(github);
+  expect(employee.git).toEqual(newGit);
 });
 
 // Test get role method
-test("", () => {
-  // Assign "Engineer" to a new role variable
-  // Instantiate the Employee class, passing an employee name and an id and an email and a github account name as auguments, to create an object and assign it to an new variable
-  // Export getRole() to return the role to be equal to the value of the role variable
+test("Return role using getRole", () => {
+  let newRole = 'intern';
+
+  let employee = new Engineer("name", "id", newRole, "email", "github");
+
+  expect(employee.getRole()).toEqual(newRole);
 });
 
 // Test get github method
-test("", () => {
-  // Assign github account to a new variable
-  // Instantiate the Employee class, passing an employee name and an id and an email and the github variable as auguments, to create an object and assign it to an new variable
-  // Expect getGithub() to return the github  name to be equal to the value of the github variable
+test("Return github username using getGit", () => {
+  let newGit = Wdiste;
+
+  let employee = new Engineer("name", "id", "role", "email", newGit);
+
+  expect(employee.getGit()).toEqual(newGit);
 });

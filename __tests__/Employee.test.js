@@ -47,8 +47,8 @@ test("Return employee id using getId", () => {
   expect(employee.getId).toEqual(newId);
 });
 
-test("Return employee id using getId", () => {
-  let newRole = "engineer";
+test("Return employee role using getRole", () => {
+  let newRole = "employee";
   const employee = newEmployee("name", "id", newRole, "email");
 
   expect(employee.getRole).toEqual(newRole);
