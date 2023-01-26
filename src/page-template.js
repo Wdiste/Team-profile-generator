@@ -19,7 +19,7 @@ const createTeam = (team) => {
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">ID: ${manager.id}</li>
                     <li class="list-group-item">Office: ${manager.office}</li>
-                    <li class="list-group-item">Email: ${manager.email}</li>
+                    <li class="list-group-item">Email: <a href = "mailto: ${manager.email}">${manager.email}</a></li>
                 </ul>
             </div>
         `;
@@ -37,8 +37,8 @@ const createTeam = (team) => {
 
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">ID: ${engineer.id}</li>
-                    <li class="list-group-item">github: ${engineer.git}</li>
-                    <li class="list-group-item">Email: ${engineer.email}</li>
+                    <li class="list-group-item">github: <a href="https://github.com/${engineer.git}"</a></li>
+                    <li class="list-group-item">Email: <a href = "mailto: ${engineer.email}">${engineer.email}</a></li>
                 </ul>
             </div>
         `;
@@ -57,7 +57,7 @@ const createTeam = (team) => {
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">ID: ${intern.id}</li>
                     <li class="list-group-item">School: ${intern.school}</li>
-                    <li class="list-group-item">Email: ${intern.email}</li>
+                    <li class="list-group-item">Email: <a href = "mailto: ${intern.email}">${intern.email}</a></li>
                 </ul>
             </div>
         `;
@@ -105,7 +105,9 @@ module.exports = team => {
     <header>
         <h1>My Team</h1>
     </header>
-        ${teamInput}
+        <div class="row rows-col-4 gap-5 m-5 cards">
+            ${teamInput}
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </body>
     </html>

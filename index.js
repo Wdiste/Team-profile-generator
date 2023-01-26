@@ -49,7 +49,7 @@ const createTeam = () => {
                     { type: "input", message: "Enter Engineer name: ", name: "engName" },
                     { type: "input", message: "Enter Engineer id: ", name: "id" },
                     { type: "input", message: "Enter Engineer email: ", name: "email" },
-                    { type: "input", message: "Enter Engineer github: ", name: "github" },
+                    { type: "input", message: "Enter Engineer github username: ", name: "github" },
                 ])
                 .then((answers) => {
                     const newEngineer = new engineer(answers.engName, answers.id, answers.email, answers.github)
