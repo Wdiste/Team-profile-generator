@@ -4,7 +4,7 @@ const Intern = require("../lib/Intern");
 test("Assigning school to intern", () => {
   let newSchool = 'Rutgers';
 
-  let employee = new Intern("name", "id", "role", "email", newSchool);
+  let employee = new Intern("name", "id", "email", newSchool);
 
   expect(employee.school).toEqual(newSchool);
 });
@@ -13,7 +13,7 @@ test("Assigning school to intern", () => {
 test("Return role using getRole", () => {
   let newRole = 'intern';
 
-  let employee = new Intern("name", "id", newRole, "email", "github");
+  let employee = new Intern("name", "id", "email", "github");
 
   expect(employee.getRole()).toEqual(newRole);
 });
@@ -22,7 +22,7 @@ test("Return role using getRole", () => {
 test("Return github username using getGit", () => {
   let newSchool = 'Njit';
 
-  let employee = new Intern("name", "id", "role", "email", newSchool);
+  let employee = new Intern("name", "id", "email", newSchool);
 
   expect(employee.getSchool()).toEqual(newSchool);
 });

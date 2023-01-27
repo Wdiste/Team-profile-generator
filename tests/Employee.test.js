@@ -4,13 +4,13 @@ const Employee = require("../lib/Employee");
 test("Initialization", () => {
   const employee = new Employee("name", "id", "role", "email")
 
-  expect(typeOf(employee)).toEqual(Employee);
+  expect(employee instanceof Employee).toEqual(true);
 });
 
 // Test setting name of an employee
 test("Assigning name to Employee", () => {
   let newName = "Bobby";
-  const employee = newEmployee(newName, "id", "role", "email");
+  const employee = new Employee(newName, "id", "role", "email");
 
   expect(employee.name).toEqual(newName);  
 });
@@ -18,7 +18,7 @@ test("Assigning name to Employee", () => {
 // Test setting id of an employee
 test("Assigning an id to employee", () => {
   let newId = 16723423;
-  const employee = newEmployee("name", newId, "role", "email");
+  const employee = new Employee("name", newId, "role", "email");
 
   expect(employee.id).toEqual(newId);
 });
@@ -26,7 +26,7 @@ test("Assigning an id to employee", () => {
 // Test setting email of an employee
 test("Assigning an email to employee", () => {
   let newEmail = "test@gmail.com";
-  const employee = newEmployee("name", "id", "role", newEmail);
+  const employee = new Employee("name", "id", "role", newEmail);
 
   expect(employee.email).toEqual(newEmail);
 });
@@ -34,7 +34,7 @@ test("Assigning an email to employee", () => {
 // Test get name method
 test("Return employee name using getName", () => {
   let newName = "Jenna";
-  const employee = newEmployee(newName, "id", "role", "email");
+  const employee = new Employee(newName, "id", "role", "email");
 
   expect(employee.getName()).toEqual(newName);  
 });
@@ -42,22 +42,22 @@ test("Return employee name using getName", () => {
 // Test get id method
 test("Return employee id using getId", () => {
   let newId = 86425;
-  const employee = newEmployee("name", newId, "role", "email");
+  const employee = new Employee("name", newId, "role", "email");
 
-  expect(employee.getId).toEqual(newId);
+  expect(employee.getId()).toEqual(newId);
 });
 
 test("Return employee role using getRole", () => {
   let newRole = "employee";
-  const employee = newEmployee("name", "id", newRole, "email");
+  const employee = new Employee("name", "id", newRole, "email");
 
-  expect(employee.getRole).toEqual(newRole);
+  expect(employee.getRole()).toEqual(newRole);
 });
 
 // Test get email method
 test("Return employee email using getEmail", () => {
   let newEmail = "test@aol.com";
-  const employee = newEmployee("name", "id", "role", newEmail);
+  const employee = new Employee("name", "id", "role", newEmail);
 
-  expect(employee.getEmail).toEqual(newEmail);
+  expect(employee.getEmail()).toEqual(newEmail);
 });

@@ -4,7 +4,7 @@ const Manager = require("../lib/Manager");
 test("Assigning office to manager", () => {
   let newOffice = 1654;
 
-  let employee = new Manager("name", "id", "role", "email", newOffice);
+  let employee = new Manager("name", "id", "email", newOffice);
 
   expect(employee.office).toEqual(newOffice);
 });
@@ -13,7 +13,7 @@ test("Assigning office to manager", () => {
 test("Return role using getRole", () => {
   let newRole = 'manager';
 
-  let employee = new Manager("name", "id", newRole, "email", "github");
+  let employee = new Manager("name", "id", "email", "github");
 
   expect(employee.getRole()).toEqual(newRole);
 });
@@ -22,7 +22,7 @@ test("Return role using getRole", () => {
 test("Return office username using getOffice", () => {
   let newOffice = 4865;
 
-  let employee = new Manager("name", "id", "role", "email", newOffice);
+  let employee = new Manager("name", "id", "email", newOffice);
 
   expect(employee.getOffice()).toEqual(newOffice);
 });
