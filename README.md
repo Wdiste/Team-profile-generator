@@ -31,6 +31,12 @@
 
   Testing the application can bedone in two parts.  The first is through unit testing.  Install packages using 'npm i', then run the test group by using the 'npm test' command.  The results will be shown in the log.  The other option is to run the program and check your input against the HTML doc created.
 
+  ## Demo
+
+  Click on the video to view a demonstration of this application:
+
+  <a href="https://drive.google.com/file/d/1LE0EA4XNDSjppU6VqoHVbxERvnoWpcMz/view"><img src="Assets\thumbnail.PNG" alt="Demo" style="width:300px;height:200px;"></a>
+
   ## Questions/feedback
 
   Please log any issues and check out my projects on Github!  <a href='https://github.com/Wdiste'>Visit Github</a>
